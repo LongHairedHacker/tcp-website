@@ -8,15 +8,16 @@ body {
     height: 100%;
     width: 100%;
 
-    font-family: 'Source Serif Pro';
-    background-color: #000000;
+    font-family: 'Share Tech';
+    background-color: rgb(23,36,48);
 }
 
 .container {
-    background-color: #000000;
-    background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,1.0)), url('background.jpg');
-    background-repeat:no-repeat;
+    background-color: rgb(23,36,48);
+    background-image: linear-gradient(rgba(23,36,48,0.0), rgba(23,36,48,1.0)), url('background.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 
     margin: 0px;
     width: 100%;
@@ -36,42 +37,101 @@ body {
 }
 
 .content {
-    color: #ffffff;
+    color: rgb(238,194,57);
+    text-shadow: 0 0 .2em rgba(256,214,77,.74);
     background-color: rgba(0, 0, 0, 0.6);
     display: block;
     padding: 50px;
     text-align: center;
 
-    font-size: 120%;
+    font-size: 110%;
 }
 
 .content a {
+    color: rgb(7,246,216);
+    text-shadow: 0 0 .2em rgba(27,256,236,.74);
     text-decoration: none;
-    color: #A0A0A0;
 }
 
-h1 {
-    font-family: 'Source Code Pro';
+.content a:hover {
+    color: rgb(27,256,236);
+    text-shadow: 0 0 .6em rgba(47,256,256,.89);
 }
 
-.logo {
-    width: 25%;
+.escalator {
+    width: 30%;
     display: none;
 }
 
-@media screen and (min-width: 400px) {
+.titleimg {
+    width: 70%;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1.5ex;
+    margin-bottom: -1.5ex;
+}
+
+.logosmall {
+    width: 70%;
+    display: none;
+}
+
+.logo {
+    width: 90%;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1.5ex;
+    margin-bottom: -2.5ex;
+}
+
+h1 {
+    font-family: 'Audiowide';
+    font-weight: normal;
+    color: rgb(226,115,199);
+    text-shadow: 0 0 .4em rgba(246,135,219,.74);
+}
+
+h2 {
+    font-family: 'Audiowide';
+    margin-bottom: 10px;
+    font-weight: normal;
+    color: rgb(226,115,199);
+    text-shadow: 0 0 .2em rgba(246,135,219,.74);
+}
+
+h3 {
+    font-family: 'Audiowide';
+    margin-bottom: 5px;
+    font-weight: normal;
+    color: rgb(226,115,199);
+    text-shadow: 0 0 .2em rgba(246,135,219,.74);
+}
+
+.titletext {
+    display: none;
+}
+
+@media screen and (min-width: 500px) {
     .logo {
+        display: block;
+    }
+    .escalator {
+        display: block;
+    }
+    .titleimg {
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .logosmall {
+        display: inline;
+    }
+    .titletext {
         display: inline;
     }
 }
 
 
-h2 {
-    font-family: 'Source Code Pro';
-    margin-bottom: 10px;
-}
-
-h3 {
-    font-family: 'Source Code Pro';
-    margin-bottom: 5px;
-}
