@@ -55,7 +55,7 @@ body {
 
 .content a:hover {
     color: rgb(27,256,236);
-    text-shadow: 0 0 .6em rgba(47,256,256,.89);
+    text-shadow: 0 0 .2em rgba(27,256,236,.74), 0 0 .6em rgba(256,214,77,.74);
 }
 
 .escalator {
