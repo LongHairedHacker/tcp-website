@@ -9,8 +9,11 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-  <img src="background.jpg" style="display: none; visibility: hidden;"/>
-  <div class="container">
+  <img id="background" src="background.jpg" style="display: none; visibility: hidden;"/>
+
+  <canvas id="animation"></canvas>
+
+  <div id="container">
     <div class="content">
       <img class="escalator" src="t_u_t.png" alt="Thies und Thies Eventeskalation GbR eskaliert..."/>
       <img class="logo" src="tcp2017.png" alt="TCP/2017"/>
@@ -42,6 +45,75 @@
     </div>
   </div>
 
+    <script type="text/javascript">
+        function setup() {
+            var lines = [];
+
+            var newAfter = 45;
+            var untilNew = 0;
+
+            var lineStart = 355 - 196/2 + 3;
+            var lineAccel = 0.01;
+
+            var fps = 60;
+
+            function loadReadyRun(image, path, cb) {
+                image.addEventListener('load', cb, false);
+                image.src = path;
+            }
+
+
+            function redraw() {
+                ctx.drawImage(backgroundImage, 0, 0);
+
+                for(var line of lines) {
+
+                    ctx.drawImage(lineImage, 0, line.y);
+
+                    line.speed += lineAccel;
+                    line.y += line.speed;
+                }
+
+                ctx.drawImage(darkenerImage, 0, 0);
+
+                lines = lines.filter(function (line) { return line.y < background.height });
+
+                untilNew--;
+                if(untilNew < 0) {
+                    var line = {
+                        y : lineStart,
+                        speed : 0,
+                    }
+
+                    lines.push(line);
+
+                    untilNew = newAfter;
+                }
+            }
+
+            var canvas = document.getElementById('animation');
+            var ctx = canvas.getContext('2d');
+
+            var backgroundImage = new Image();
+            var lineImage = new Image();
+            var darkenerImage = new Image();
+
+            loadReadyRun(backgroundImage, 'bganim/bg-nolines.png', function() {
+                    canvas.width = backgroundImage.width;
+                    canvas.height = backgroundImage.height;
+
+                    loadReadyRun(lineImage, 'bganim/bg-line.png', function() {
+                        loadReadyRun(darkenerImage, 'bganim/bg-darkener.png', function() {
+                            var container = document.getElementById('container');
+                            container.style = 'background-image: linear-gradient(rgba(23,36,48,0.0), rgba(23,36,48,1.0));';
+                            redraw();
+                            setInterval(redraw, 1000.0 / fps);
+                        });
+                    });
+                });
+        };
+
+        setup();
+    </script>
 </body>
 </html>
-

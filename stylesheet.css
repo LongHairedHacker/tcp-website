@@ -10,11 +10,22 @@ body {
 
     font-family: 'Share Tech', sans-serif;
     background-color: rgb(23,36,48);
+    background-color: rgb(23,36,48);
 }
 
-.container {
-    background-color: rgb(23,36,48);
-    background-image: linear-gradient(rgba(23,36,48,0.0), rgba(23,36,48,1.0)), url('background.jpg');
+#animation {
+    height: 100%;
+    width: 100%;
+
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index:-1;
+}
+
+#container {
+    background-image: linear-gradient(rgba(23,36,48,0.0), rgba(23,36,48,1.0)), url('background.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -31,7 +42,7 @@ body {
 }
 
 @media screen and (min-height: 1050px) {
-    .container {
+    #container {
         justify-content: space-around;
     }
 }
@@ -133,5 +144,3 @@ h3 {
         display: inline;
     }
 }
-
-
