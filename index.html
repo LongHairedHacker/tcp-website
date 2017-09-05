@@ -46,10 +46,24 @@
       Eine Spende in Höhe von 5€ wird empfohlen.<br/>
       <br/>
       <small><a href="impressum.html">Impressum</a></small>
+      <br/>
+      <br/>
+      Musik: <a id="toggle-soundtrack">Aus</a><br/>
+
+      Now Playing:
+      <a href="http://freemusicarchive.org/music/Herr_Doktor/199X/05_herr_doktor_-_interlude">Interlude</a>
+      by <a href="https://soundcloud.com/herrdoktordj">Herr Doktor</a>
+      (<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">CC-BY-SA-NC</a>)
     </div>
   </div>
+  <!-- Uses HTST to steer browsers to https:// if they work with the strict cipher set -->
+  <img src="https://tschunkc.yber.party/background.jpg" style="display: none; visibility: hidden;"/>
 
-    <script type="text/javascript">
+  <audio id="soundtrack">
+      <source src="Herr_Doktor_-_05_-_Interlude.mp3" type="audio/mpeg">
+  </audio>
+
+  <script type="text/javascript">
         function setup() {
             var lines = [];
 
@@ -60,6 +74,14 @@
             var lineAccel = 0.01;
 
             var fps = 60;
+
+            var canvas = document.getElementById('animation');
+            var ctx = canvas.getContext('2d');
+
+            var backgroundImage = new Image();
+            var lineImage = new Image();
+            var darkenerImage = new Image();
+
 
             function loadReadyRun(image, path, cb) {
                 image.addEventListener('load', cb, false);
@@ -94,19 +116,12 @@
                 }
             }
 
-            var canvas = document.getElementById('animation');
-            var ctx = canvas.getContext('2d');
-
-            var backgroundImage = new Image();
-            var lineImage = new Image();
-            var darkenerImage = new Image();
-
-            loadReadyRun(backgroundImage, 'bganim/bg-nolines.png', function() {
+            loadReadyRun(backgroundImage, 'bganim/bg-nolines.png', () => {
                     canvas.width = backgroundImage.width;
                     canvas.height = backgroundImage.height;
 
-                    loadReadyRun(lineImage, 'bganim/bg-line.png', function() {
-                        loadReadyRun(darkenerImage, 'bganim/bg-darkener.png', function() {
+                    loadReadyRun(lineImage, 'bganim/bg-line.png', () => {
+                        loadReadyRun(darkenerImage, 'bganim/bg-darkener.png', () => {
                             var container = document.getElementById('container');
                             container.style = 'background-image: linear-gradient(rgba(23,36,48,0.0), rgba(23,36,48,1.0));';
                             redraw();
@@ -114,12 +129,27 @@
                         });
                     });
                 });
+
+            var soundtrack = document.getElementById('soundtrack');
+            soundtrack.volume = 0.4;
+            soundtrack.loop = true;
+            soundtrack.play();
+
+            toggleSoundtrack = document.getElementById('toggle-soundtrack');
+            toggleSoundtrack.addEventListener("click", () => {
+                if(soundtrack.paused) {
+                    soundtrack.play();
+                    toggleSoundtrack.text = "Aus";
+                }
+                else {
+                    soundtrack.pause()
+                    toggleSoundtrack.text = "An";
+                }
+            });
         };
 
         setup();
-    </script>
+  </script>
 
-    <!-- Uses HTST to steer browsers to https:// if they work with the strict cipher set -->
-    <img src="https://tschunkc.yber.party/background.jpg" style="display: none; visibility: hidden;"/>
 </body>
 </html>
