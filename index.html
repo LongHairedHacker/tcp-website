@@ -9,7 +9,11 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
 </head>
 <body>
-  <img id="background" src="background.jpg" style="display: none; visibility: hidden;"/>
+
+  <img src="background.jpg" style="display: none; visibility: hidden;"/>
+  <img src="bganim/bg-darkener.png" style="display: none; visibility: hidden;"/>
+  <img src="bganim/bg-line.png" style="display: none; visibility: hidden;"/>
+  <img src="bganim/bg-nolines.png" style="display: none; visibility: hidden;"/>
 
   <canvas id="animation"></canvas>
 
@@ -62,7 +66,6 @@
                 image.src = path;
             }
 
-
             function redraw() {
                 ctx.drawImage(backgroundImage, 0, 0);
 
@@ -76,7 +79,7 @@
 
                 ctx.drawImage(darkenerImage, 0, 0);
 
-                lines = lines.filter(function (line) { return line.y < background.height });
+                lines = lines.filter(function (line) { return line.y < backgroundImage.height });
 
                 untilNew--;
                 if(untilNew < 0) {
@@ -115,5 +118,8 @@
 
         setup();
     </script>
+
+    <!-- Uses HTST to steer browsers to https:// if they work with the strict cipher set -->
+    <img src="https://tschunkc.yber.party/background.jpg" style="display: none; visibility: hidden;"/>
 </body>
 </html>
